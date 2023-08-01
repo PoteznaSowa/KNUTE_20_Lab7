@@ -8,7 +8,7 @@ namespace _20_Lab7_2 {
 
 			MyMatrix<int> matrix = null;
 			while (Console.KeyAvailable)
-				Console.ReadKey();  // Очистити буфер вводу.
+				Console.ReadKey();
 			for (; ; ) {
 				int a, b;
 				if (matrix == null) {
@@ -73,7 +73,6 @@ namespace _20_Lab7_2 {
 		}
 
 		static void ShowMatrix(MyMatrix<int> matrix) {
-			// Вивести на екран матрицю.
 			for (var i = 0; i < matrix.Height; i++) {
 				for (var j = 0; j < matrix.Width; j++) {
 					Console.Write("{0,4}", matrix[j, i]);
@@ -89,45 +88,38 @@ namespace _20_Lab7_2 {
 			var bgc = Console.BackgroundColor;
 			var x = 0;
 			var y = 0;
-			var currentline = Console.CursorTop;  // Запам'ятати номер рядка в консолі.
-			Console.CursorVisible = false;  // Приховати курсор, щоб не заважав.
+			var currentline = Console.CursorTop;
+			Console.CursorVisible = false;
 			while (Console.KeyAvailable)
-				Console.ReadKey();  // Очистити буфер вводу.
+				Console.ReadKey();
 			for (; ; ) {
-				// Оновити та підсвітити елемент матриці.
 				Console.SetCursorPosition(x * 4, currentline - matrix.Height + y);
 				Console.BackgroundColor = fgc;
 				Console.ForegroundColor = bgc;
 				Console.Write("{0,4}", matrix[x, y]);
-				// Скинути стан курсора на випадок, якщо програму буде примусово закрито.
 				Console.ResetColor();
 				Console.SetCursorPosition(0, currentline);
 
 				ConsoleKey key = Console.ReadKey(true).Key;
-				// Прибрати підсвітку елемента.
 				Console.SetCursorPosition(x * 4, currentline - matrix.Height + y);
 				Console.Write("{0,4}", matrix[x, y]);
 				Console.SetCursorPosition(0, currentline);
 				switch (key) {
 				case ConsoleKey.Enter:
-					goto Exit;  // Вийти з нескінченого циклу for(;;).
+					goto Exit;
 				case ConsoleKey.LeftArrow:
-					// Перемістити курсор вліво.
 					if (x > 0)
 						x--;
 					break;
 				case ConsoleKey.UpArrow:
-					// Перемістити курсор вверх.
 					if (y > 0)
 						y--;
 					break;
 				case ConsoleKey.RightArrow:
-					// Перемістити курсор вправо.
 					if (x < matrix.Width - 1)
 						x++;
 					break;
 				case ConsoleKey.DownArrow:
-					// Перемістити курсор вниз.
 					if (y < matrix.Height - 1)
 						y++;
 					break;
@@ -141,7 +133,6 @@ namespace _20_Lab7_2 {
 				case ConsoleKey.D7:
 				case ConsoleKey.D8:
 				case ConsoleKey.D9:
-					// Якщо ввести цифру, мінус губиться.
 					if (matrix[x, y] < 0)
 						matrix[x, y] = -matrix[x, y];
 					matrix[x, y] = (matrix[x, y] % 10 * 10) + (key - ConsoleKey.D0);
@@ -156,14 +147,12 @@ namespace _20_Lab7_2 {
 				case ConsoleKey.NumPad7:
 				case ConsoleKey.NumPad8:
 				case ConsoleKey.NumPad9:
-					// Якщо ввести цифру, мінус губиться.
 					if (matrix[x, y] < 0)
 						matrix[x, y] = -matrix[x, y];
 					matrix[x, y] = (matrix[x, y] % 10 * 10) + (key - ConsoleKey.NumPad0);
 					break;
 				case ConsoleKey.OemMinus:
 				case ConsoleKey.Subtract:
-					// Переключити мінус.
 					matrix[x, y] = -matrix[x, y];
 					break;
 				default:
@@ -171,7 +160,7 @@ namespace _20_Lab7_2 {
 				}
 			}
 		Exit:
-			Console.CursorVisible = true;  // Показати курсор.
+			Console.CursorVisible = true;
 		}
 
 		static int GetNumberKey() {
