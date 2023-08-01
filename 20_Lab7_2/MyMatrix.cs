@@ -4,17 +4,14 @@ using System.Text;
 
 namespace _20_Lab7_2 {
 	class MyMatrix<T> {
-		// Матриця об'єктів типу T.
-
-		// Створити двомірний список.
 		readonly List<List<T>> matrix;
 
 		public MyMatrix(int width, int height) {
-			matrix = new List<List<T>>();  // Стовпці.
+			matrix = new List<List<T>>();
 			for (int i = 0; i < width; i++) {
-				matrix.Add(new List<T>());  // Рядки.
+				matrix.Add(new List<T>());
 				for (int j = 0; j < height; j++) {
-					matrix[i].Add(default);  // Заповнити матрицю значенням за замовчуванням.
+					matrix[i].Add(default);
 				}
 			}
 		}
