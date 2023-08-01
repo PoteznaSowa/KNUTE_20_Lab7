@@ -36,7 +36,7 @@ namespace _20_Lab7_1 {
 		int index;
 
 		private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-			index = (int)Slider.Value;  // Чомусь у WPF нема повзунка лише для цілочисленних значень.
+			index = (int)Slider.Value;
 			ItemInfo.Text = $"Значення елемента {index}:";
 			ItemValue.Text = array[index].ToString();
 			UpdateInfo();
@@ -54,7 +54,6 @@ namespace _20_Lab7_1 {
 		}
 
 		private void CreateArrayButton_Click(object sender, RoutedEventArgs e) {
-			// Обробити кнопку створення масиву.
 			if (ArraySizeInput.Text.Trim() == "") {
 				MessageBox.Show("Введіть розмір масиву!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
 			} else if (!int.TryParse(ArraySizeInput.Text.Trim(), out int size) || size < 2) {
@@ -73,12 +72,11 @@ namespace _20_Lab7_1 {
 		}
 
 		private void UpdateInfo() {
-			// Динамічно (якщо значення змінюється в інтерфейсі) виводити:
-			int max = array[0];// найбільше значення масиву,
-			int min = array[0];// найменше значення масиву,
-			int sum = array[0];// загальну суму елементів,
-			double avg;        // середнє арифметичне всіх елементів,
-			string odds = "";  // вивести всі непарні значення.
+			int max = array[0];
+			int min = array[0];
+			int sum = array[0];
+			double avg;
+			string odds = "";
 
 			for (int i = 1; i < array.Length; i++) {
 				if (array[i] > max)
